@@ -1,10 +1,15 @@
 ﻿using backendAPI.Data.Entities;
 using backendAPI.Data.Entities.Auth;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace backendAPI.Data
 {
-    public class AppEFContext : DbContext
+    public class AppEFContext : IdentityDbContext<UserEntity, RoleEntity, int,
+        IdentityUserClaim<int>, UserRoleEntity, IdentityUserLogin<int>,
+        IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
        
         public DbSet<BasketEntity> Baskets { get; set; }
@@ -14,6 +19,11 @@ namespace backendAPI.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // gpt code
+            base.OnModelCreating(builder);
+
+            builder.Entity<IdentityUserLogin<int>>().HasKey(e => new { e.LoginProvider, e.ProviderKey });
+            ///
 
             builder.Entity<UserRoleEntity>(ur =>
             {
