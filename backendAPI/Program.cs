@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using backendAPI.Abstract;
+using backendAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,9 +26,9 @@ builder.Services.AddIdentity<UserEntity, RoleEntity>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireLowercase = false;
-}); 
-   // .AddEntityFrameworkStores<AppEFContext>()
-    //.AddDefaultTokenProviders();
+})
+    .AddEntityFrameworkStores<AppEFContext>()
+    .AddDefaultTokenProviders();
 
 
 var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetValue<String>("JwtSecretKey")));
@@ -50,6 +53,8 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.Zero
     };
 });
+
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddAutoMapper(typeof(AppMapProfile)); //+
 builder.Services.AddControllers();
 
