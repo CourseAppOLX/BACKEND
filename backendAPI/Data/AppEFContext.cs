@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace backendAPI.Data
 {
@@ -13,6 +14,8 @@ namespace backendAPI.Data
     {
        
         public DbSet<BasketEntity> Baskets { get; set; }
+        //public DbSet<UserEntity> Users { get; set; } // Додайте цю властивість
+
         public AppEFContext(DbContextOptions<AppEFContext> options) : base(options)
         {
         }
@@ -24,6 +27,11 @@ namespace backendAPI.Data
 
             builder.Entity<IdentityUserLogin<int>>().HasKey(e => new { e.LoginProvider, e.ProviderKey });
             ///
+
+            builder.Entity<RoleEntity>()
+        .Property(r => r.Id)
+       .ValueGeneratedNever(); // Відключити автогенерацію для Id
+
 
             builder.Entity<UserRoleEntity>(ur =>
             {

@@ -77,7 +77,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.SeedData();
 app.UseAuthentication();
 app.UseAuthorization();
 
