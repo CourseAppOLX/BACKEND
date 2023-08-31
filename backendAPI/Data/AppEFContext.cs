@@ -13,24 +13,24 @@ namespace backendAPI.Data
         IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
        
-        public DbSet<BasketEntity> Baskets { get; set; }
-        //public DbSet<UserEntity> Users { get; set; } // Додайте цю властивість
-
+       public DbSet<BasketEntity> Baskets { get; set; }
+       
         public AppEFContext(DbContextOptions<AppEFContext> options) : base(options)
         {
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            //builder.Entity<RoleEntity>()
+            //    .Property(r => r.Id)
+            //     .ValueGeneratedNever(); // Відключити автогенерацію для Id
             // gpt code
             base.OnModelCreating(builder);
 
             builder.Entity<IdentityUserLogin<int>>().HasKey(e => new { e.LoginProvider, e.ProviderKey });
             ///
 
-            builder.Entity<RoleEntity>()
-        .Property(r => r.Id)
-       .ValueGeneratedNever(); // Відключити автогенерацію для Id
+
 
 
             builder.Entity<UserRoleEntity>(ur =>

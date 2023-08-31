@@ -6,9 +6,9 @@ namespace backendAPI.Data.Entities.Auth
 {
     public class UserEntity : IdentityUser<int>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //public long Id { get; set; }
 
         [StringLength(100)]
         public string FirstName { get; set; }
