@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using backendAPI.Data;
@@ -11,9 +12,11 @@ using backendAPI.Data;
 namespace backendAPI.Migrations
 {
     [DbContext(typeof(AppEFContext))]
-    partial class AppEFContextModelSnapshot : ModelSnapshot
+    [Migration("20230830205029_initdb")]
+    partial class initdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,17 +245,10 @@ namespace backendAPI.Migrations
 
             modelBuilder.Entity("backendAPI.Data.Entities.BasketEntity", b =>
                 {
-<<<<<<< HEAD
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("ProductId")
-=======
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.Property<int>("ProductId")
->>>>>>> f0834f38439bff0e5bd32e05f7d5e1b133f7b843
                         .HasColumnType("integer");
 
                     b.Property<int>("Quintity")
@@ -263,28 +259,6 @@ namespace backendAPI.Migrations
                     b.ToTable("tblBaskets");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("backendAPI.Data.Entities.category.CategoryEntity", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("ParentCategoryId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Name");
-
-                    b.ToTable("Categories");
-                });
-
-=======
->>>>>>> f0834f38439bff0e5bd32e05f7d5e1b133f7b843
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("backendAPI.Data.Entities.Auth.RoleEntity", null)
