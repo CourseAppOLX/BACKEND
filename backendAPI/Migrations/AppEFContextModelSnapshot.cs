@@ -242,17 +242,10 @@ namespace backendAPI.Migrations
 
             modelBuilder.Entity("backendAPI.Data.Entities.BasketEntity", b =>
                 {
-<<<<<<< HEAD
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("ProductId")
-=======
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProductId")
->>>>>>> f0834f38439bff0e5bd32e05f7d5e1b133f7b843
                         .HasColumnType("integer");
 
                     b.Property<int>("Quintity")
@@ -263,7 +256,6 @@ namespace backendAPI.Migrations
                     b.ToTable("tblBaskets");
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("backendAPI.Data.Entities.category.CategoryEntity", b =>
                 {
                     b.Property<string>("Name")
@@ -283,8 +275,6 @@ namespace backendAPI.Migrations
                     b.ToTable("Categories");
                 });
 
-=======
->>>>>>> f0834f38439bff0e5bd32e05f7d5e1b133f7b843
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("backendAPI.Data.Entities.Auth.RoleEntity", null)

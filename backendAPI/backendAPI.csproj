@@ -28,10 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <Folder Include="Controllers\Category\Product\" />
-=======
->>>>>>> f0834f38439bff0e5bd32e05f7d5e1b133f7b843
     <Folder Include="images\" />
   </ItemGroup>
 
