@@ -3,7 +3,6 @@ using backendAPI.Data.Entities.Auth;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace backendAPI.Data
@@ -12,26 +11,18 @@ namespace backendAPI.Data
         IdentityUserClaim<int>, UserRoleEntity, IdentityUserLogin<int>,
         IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
-       
-       public DbSet<BasketEntity> Baskets { get; set; }
-       
+        public DbSet<BasketEntity> Baskets { get; set; }
+        public DbSet<CategoryEntity> Categories { get; set; } // Додайте DbSet для CategoryEntity
+
         public AppEFContext(DbContextOptions<AppEFContext> options) : base(options)
         {
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<RoleEntity>()
-            //    .Property(r => r.Id)
-            //     .ValueGeneratedNever(); // Відключити автогенерацію для Id
-            // gpt code
             base.OnModelCreating(builder);
 
             builder.Entity<IdentityUserLogin<int>>().HasKey(e => new { e.LoginProvider, e.ProviderKey });
-            ///
-
-
-
 
             builder.Entity<UserRoleEntity>(ur =>
             {
@@ -47,11 +38,21 @@ namespace backendAPI.Data
                     .HasForeignKey(u => u.UserId)
                     .IsRequired();
             });
+
             builder.Entity<BasketEntity>(ur =>
             {
                 ur.HasKey(ur => new { ur.UserId, ur.ProductId });
             });
 
+            builder.Entity<CategoryEntity>(c =>
+            {
+                c.HasKey(e => e.Id);
+
+                // Вказати додаткову конфігурацію для CategoryEntity, якщо потрібно
+
+                // Наприклад, якщо CategotyName повинен бути унікальним:
+                c.HasIndex(e => e.CategotyName).IsUnique();
+            });
         }
     }
 }

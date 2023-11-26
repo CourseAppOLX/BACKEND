@@ -31,6 +31,6 @@
         /// <summary>
         /// Оберіть фото користувача
         /// </summary>
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }

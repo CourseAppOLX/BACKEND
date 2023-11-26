@@ -12,8 +12,8 @@ using backendAPI.Data;
 namespace backendAPI.Migrations
 {
     [DbContext(typeof(AppEFContext))]
-    [Migration("20230830205029_initdb")]
-    partial class initdb
+    [Migration("20231122190828_FixBug_02")]
+    partial class FixBug_02
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

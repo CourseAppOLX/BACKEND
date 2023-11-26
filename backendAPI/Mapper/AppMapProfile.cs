@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using backendAPI.Data.Entities;
+using backendAPI.Models;
 
 namespace backendAPI.Mapper
 {
@@ -7,7 +9,7 @@ namespace backendAPI.Mapper
 
         public AppMapProfile()
         {
-
+            CreateMap<CategoryEntity, CategoryDto>().ReverseMap();
         }
     }
 }

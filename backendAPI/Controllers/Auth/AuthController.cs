@@ -1,5 +1,6 @@
 ﻿using backendAPI.Abstract;
 using backendAPI.Constans;
+using backendAPI.Data;
 using backendAPI.Data.Entities.Auth;
 using backendAPI.Models.Auth;
 using backendAPI.Services;
@@ -16,6 +17,7 @@ namespace backendAPI.Controllers.Auth
     {
         private readonly UserManager<UserEntity> _userManager;
         private readonly IJwtTokenService _jwtTokenService;
+       
 
         public AuthController(UserManager<UserEntity> userManager, IJwtTokenService jwtTokenService)
         {
