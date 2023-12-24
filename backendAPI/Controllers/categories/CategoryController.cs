@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backendAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/category")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
@@ -30,7 +30,7 @@ namespace backendAPI.Controllers
         }
 
         // GET: api/Category
-        [HttpGet]
+        [HttpGet("list")]
         public async Task<IActionResult> GetAsync()
         {
             var result = await _appEFContext.Categories
@@ -40,7 +40,7 @@ namespace backendAPI.Controllers
         }
 
         // GET: api/Category/5
-        [HttpGet("{id}")]
+        [HttpGet("item{id}")]
         public async Task<ActionResult<CategoryEntity>> GetAsync(int id)
         {
             var category = await _appEFContext.Categories.SingleOrDefaultAsync(x => x.Id == id);
@@ -56,7 +56,7 @@ namespace backendAPI.Controllers
         // POST: api/Category
 
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> Post([FromForm] CategoryDto categoryDto)
         {
             try
@@ -84,7 +84,8 @@ namespace backendAPI.Controllers
                     {
                         Id = categoryDto.Id,
                         CategotyName = categoryDto.CategoryName,
-                        ParentCategry = categoryDto.ParentCategory,
+                        ParentCategry = categoryDto.ParentCategryId,
+                        Description = categoryDto.Description,
                         // Встановлення імені файлу в сутності
                         CategoryImage = imageName, // Змінено на ім'я файлу
                     };
@@ -110,7 +111,7 @@ namespace backendAPI.Controllers
 
 
         // PUT: api/Category/5
-        [HttpPut("{id}")]
+        [HttpPut("update{id}")]
         public async Task<IActionResult> PutAsync(int id, [FromBody] CategoryDto categoryDto)
         {
 
@@ -145,7 +146,7 @@ namespace backendAPI.Controllers
                     {
                         Id = categoryDto.Id,
                         CategotyName = categoryDto.CategoryName,
-                        ParentCategry = categoryDto.ParentCategory,
+                        ParentCategry = categoryDto.ParentCategryId,
                         // Встановлення імені файлу в сутності
                         CategoryImage = imageName, // Змінено на ім'я файлу
                     };

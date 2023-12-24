@@ -12,8 +12,8 @@ using backendAPI.Data;
 namespace backendAPI.Migrations
 {
     [DbContext(typeof(AppEFContext))]
-    [Migration("20231122190828_FixBug_02")]
-    partial class FixBug_02
+    [Migration("20231128204958_InitDBand_addCategories")]
+    partial class InitDBand_addCategories
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -257,6 +257,37 @@ namespace backendAPI.Migrations
                     b.HasKey("UserId", "ProductId");
 
                     b.ToTable("tblBaskets");
+                });
+
+            modelBuilder.Entity("backendAPI.Data.Entities.CategoryEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CategoryImage")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CategotyName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ParentCategry")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategotyName")
+                        .IsUnique();
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

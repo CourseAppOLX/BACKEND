@@ -11,10 +11,16 @@
         public string CategoryName { get; set; }
 
         /// <summary>
+        /// Опис
+        /// </summary>
+        /// <example>Description</example>
+        public string Description { get; set; }
+
+        /// <summary>
         /// Батьківська категорія
         /// </summary>
         /// <example>Parent</example>
-        public string ParentCategory { get; set; }
+        public int? ParentCategryId { get; set; } = 0;
 
         /// <summary>
         /// Фото

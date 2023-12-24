@@ -272,8 +272,12 @@ namespace backendAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ParentCategry")
+                    b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int?>("ParentCategry")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

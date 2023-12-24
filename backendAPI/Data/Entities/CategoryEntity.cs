@@ -7,7 +7,8 @@ namespace backendAPI.Data.Entities
     {
         public int Id { get; set; }
         public string CategotyName { get; set; }
-        public string? ParentCategry { get; set; }
+        public string Description { get; set; }
+        public int? ParentCategry { get; set; } = 0;
 
         public string CategoryImage { get; set; } = "default-image.jpg";
 
